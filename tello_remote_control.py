@@ -1,6 +1,7 @@
 from djitellopy import Tello
 import threading
 import keyboard
+import cv2
 
 SPEED = 10
 TICKSPEED = 0.05
