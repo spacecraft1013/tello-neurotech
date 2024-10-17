@@ -2,6 +2,7 @@ from djitellopy import Tello
 import threading
 import keyboard
 import cv2
+import time
 
 SPEED = 10
 TICKSPEED = 0.05
@@ -30,8 +31,7 @@ class LiveStream:
         font_size = 24
         font_color = (255,255,255)
         bg_color = (0,0,0)
-        d = 2
-        height, width = image.shape[:2]
+        height = image.shape[:2]
         left_mergin = 10
         if row < 0:
             pos =  (left_mergin, height + font_size * row + 1)
@@ -63,7 +63,7 @@ class Victim:
 
         self.tello.streamon()
         self.livestream = LiveStream(self.tello)
-        self.stream_thread = threading.Thread(self.livestream.stream)
+        self.stream_thread = threading.Thread(target=self.livestream.stream, args=())
         self.active = True
         self.DIE = False
 
